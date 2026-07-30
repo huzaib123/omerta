@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMÈRTA — Editor & Cinematographer</title>
+  <meta name="description" content="Portfolio of Omèrta — Editor, Cinematographer, and Visual Storyteller. Crafting cinematic experiences with an extreme sense of humour.">
+  <meta name="theme-color" content="#0A0A0F">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       LOADER
+  ═══════════════════════════════════════════ -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <h2 class="loader-brand">OMÈRTA</h2>
+      <div class="loader-bar">
+        <div class="loader-progress" id="loader-progress"></div>
+      </div>
+      <span class="loader-counter font-mono" id="loader-counter">0</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CUSTOM CURSOR
+  ═══════════════════════════════════════════ -->
+  <div id="custom-cursor" class="custom-cursor">
+    <div class="cursor-dot" id="cursor-dot">
+      <span class="cursor-text">VIEW</span>
+    </div>
+    <div class="cursor-follower" data-index="0"></div>
+    <div class="cursor-follower" data-index="1"></div>
+    <div class="cursor-follower" data-index="2"></div>
+    <div class="cursor-follower" data-index="3"></div>
+    <div class="cursor-follower" data-index="4"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       WEBGL FLUID BACKGROUND
+  ═══════════════════════════════════════════ -->
+  <canvas id="fluid-canvas"></canvas>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav id="main-nav" class="main-nav">
+    <a href="#" class="nav-logo" data-magnetic>OMÈRTA</a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link font-mono" data-magnetic>ABOUT</a>
+      <a href="#contact" class="nav-link font-mono" data-magnetic>CONTACT</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN WRAPPER (velocity skew target)
+  ═══════════════════════════════════════════ -->
+  <main id="main-wrapper" class="main-wrapper">
+
+    <!-- ══════════════════════════════════════════
+         PAGE 1 — IMMERSIVE HERO
+         Multiple effect layers + featured continuous video
+    ══════════════════════════════════════════ -->
+    <section id="hero" class="hero-section">
+
+      <!-- LAYER 0: Background Video (Full visibility background) -->
+      <div class="hero-layer hero-video-layer">
+        <video id="hero-bg-video" src="assets/reel.mp4" autoplay loop muted playsinline -webkit-playsinline preload="auto" class="hero-bg-video"></video>
+      </div>
+
+      <!-- LAYER 1: Subtle Gradient Overlay for Text Readability -->
+      <div class="hero-layer hero-gradient-layer"></div>
+
+      <!-- LAYER 2: Cinematic Film Grain -->
+      <div class="hero-layer hero-grain-layer"></div>
+
+      <!-- LAYER 3: Vignette -->
+      <div class="hero-layer hero-vignette-layer"></div>
+
+      <!-- LAYER 4: Hero Content -->
+      <div class="hero-layer hero-content-layer">
+        <div class="hero-content">
+          <div class="hero-label">
+            <span class="label-line"></span>
+            <span class="label-text font-mono" data-split-words>EDITOR & CINEMATOGRAPHER</span>
+          </div>
+          <h1 class="hero-title" data-split-chars>OMÈRTA</h1>
+          <p class="hero-tagline" data-split-words>Cutting commercials, music videos, and film with razor-sharp timing, deep color, and relentless humor.</p>
+          <div class="hero-cta-row">
+            <a href="#about" class="hero-cta-btn" data-magnetic>
+              <span class="btn-text font-mono">EXPLORE</span>
+              <span class="btn-fill"></span>
+            </a>
+            <button id="hero-sound-btn" class="hero-sound-btn font-mono" data-magnetic title="Toggle audio sound">
+              <span class="sound-dot"></span>
+              <span class="sound-text">SOUND / OFF</span>
+            </button>
+            <a href="#contact" class="hero-cta-link font-mono" data-magnetic>Get in touch →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAYER 6: Scroll indicator -->
+      <div class="hero-scroll-indicator">
+        <span class="scroll-text font-mono">SCROLL</span>
+        <div class="scroll-line"></div>
+      </div>
+
+      <!-- LAYER 7: Corner metadata -->
+      <div class="hero-meta hero-meta-left font-mono">
+        <span>BASED GLOBALLY</span>
+      </div>
+      <div class="hero-meta hero-meta-right font-mono">
+        <span>AVAILABLE FOR WORK — 2024</span>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         PAGE 2 — ABOUT / CONTACT
+    ══════════════════════════════════════════ -->
+
+    <!-- ────── ABOUT ────── -->
+    <section id="about" class="about-section">
+      <div class="section-header">
+        <span class="section-label font-mono">/ 01</span>
+        <h2 class="section-title" data-split-chars>THE CRAFT</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-image-col">
+          <div class="about-image-wrap" data-parallax-container>
+            <img src="assets/hero.jpg" alt="Omèrta at work" class="about-image" data-parallax>
+          </div>
+        </div>
+        <div class="about-text-col">
+          <p class="about-text reveal-up">I take raw footage and cut it into stories that hit hard. No over-engineered fluff — just clean pacing, intentional sound design, and color grading that sets the mood right away.</p>
+          <p class="about-text reveal-up">Years spent behind cinema rigs and inside editing bays. Whether it’s a fast-paced commercial, a music video, or a dark narrative short, I make sure every single frame earns its place.</p>
+          <p class="about-text reveal-up">Direct creative direction, zero friction, and an unreasonable sense of humor along the way.</p>
+          <div class="about-tags reveal-up">
+            <span class="tag font-mono">VIDEO EDITING</span>
+            <span class="tag font-mono">CINEMATOGRAPHY</span>
+            <span class="tag font-mono">COLOR GRADING</span>
+            <span class="tag font-mono">DIRECTING</span>
+            <span class="tag font-mono">SOUND DESIGN</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── PROCESS TIMELINE ────── -->
+    <section class="timeline-section">
+      <div class="section-header">
+        <span class="section-label font-mono">/ 02</span>
+        <h2 class="section-title" data-split-chars>THE PROCESS</h2>
+      </div>
+      <div class="timeline-wrapper">
+        <div class="timeline-line-container">
+          <svg class="timeline-svg" preserveAspectRatio="none">
+            <line class="timeline-line-bg" x1="50%" y1="0" x2="50%" y2="100%"/>
+            <line class="timeline-line" id="timeline-line" x1="50%" y1="0" x2="50%" y2="100%"/>
+          </svg>
+        </div>
+        <div class="timeline-nodes">
+          <div class="timeline-node" data-step="1">
+            <div class="node-dot"></div>
+            <div class="node-content">
+              <span class="node-number font-mono">01</span>
+              <h4 class="node-title">CONCEPT</h4>
+              <p class="node-desc">Vision alignment & creative direction. We argue about fonts until something beautiful emerges.</p>
+            </div>
+          </div>
+          <div class="timeline-node" data-step="2">
+            <div class="node-dot"></div>
+            <div class="node-content">
+              <span class="node-number font-mono">02</span>
+              <h4 class="node-title">PRE-PRODUCTION</h4>
+              <p class="node-desc">Storyboarding, location scouting, and making unrealistic promises to the producer.</p>
+            </div>
+          </div>
+          <div class="timeline-node" data-step="3">
+            <div class="node-dot"></div>
+            <div class="node-content">
+              <span class="node-number font-mono">03</span>
+              <h4 class="node-title">PRODUCTION</h4>
+              <p class="node-desc">Principal photography. Where the magic happens and the schedule dies a dignified death.</p>
+            </div>
+          </div>
+          <div class="timeline-node" data-step="4">
+            <div class="node-dot"></div>
+            <div class="node-content">
+              <span class="node-number font-mono">04</span>
+              <h4 class="node-title">POST-PRODUCTION</h4>
+              <p class="node-desc">Editing, color grading, sound design. Also known as "living in a dark room for weeks."</p>
+            </div>
+          </div>
+          <div class="timeline-node" data-step="5">
+            <div class="node-dot"></div>
+            <div class="node-content">
+              <span class="node-number font-mono">05</span>
+              <h4 class="node-title">DELIVERY</h4>
+              <p class="node-desc">Final master, format adaptation, and the bittersweet act of letting go.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── STATS ────── -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number" data-count="47">0</span>
+          <span class="stat-suffix">+</span>
+          <span class="stat-label font-mono">PROJECTS</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="6">0</span>
+          <span class="stat-suffix"></span>
+          <span class="stat-label font-mono">YEARS</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="12">0</span>
+          <span class="stat-suffix"></span>
+          <span class="stat-label font-mono">AWARDS</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="23">0</span>
+          <span class="stat-suffix">+</span>
+          <span class="stat-label font-mono">CLIENTS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── CONTACT ────── -->
+    <section id="contact" class="contact-section">
+      <div class="section-header">
+        <span class="section-label font-mono">/ 03</span>
+        <h2 class="section-title" data-split-chars>SAY HELLO</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-form-col">
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <input type="text" id="input-name" name="name" required autocomplete="off">
+              <label for="input-name" class="font-mono">YOUR NAME</label>
+              <div class="input-line"></div>
+            </div>
+            <div class="form-group">
+              <input type="email" id="input-email" name="email" required autocomplete="off">
+              <label for="input-email" class="font-mono">YOUR EMAIL</label>
+              <div class="input-line"></div>
+            </div>
+            <div class="form-group">
+              <textarea id="input-message" name="message" rows="4" required></textarea>
+              <label for="input-message" class="font-mono">YOUR VISION</label>
+              <div class="input-line"></div>
+            </div>
+            <button type="button" class="submit-btn dummy-email-btn" id="dummy-email-btn" data-magnetic>
+              <span class="btn-text font-mono">SEND MESSAGE →</span>
+              <span class="btn-fill"></span>
+            </button>
+          </form>
+        </div>
+        <div class="contact-info-col">
+          <div class="contact-info-block reveal-up">
+            <span class="footer-label font-mono">EMAIL</span>
+            <a href="mailto:hello@omerta.studio" class="contact-big-link" data-magnetic>hello@omerta.studio</a>
+          </div>
+          <div class="contact-info-block reveal-up">
+            <span class="footer-label font-mono">CONNECT</span>
+            <div class="footer-links">
+              <a href="#" class="footer-link" data-magnetic>Instagram</a>
+              <a href="#" class="footer-link" data-magnetic>Vimeo</a>
+              <a href="#" class="footer-link" data-magnetic>YouTube</a>
+              <a href="#" class="footer-link" data-magnetic>Behance</a>
+            </div>
+          </div>
+          <div class="contact-info-block reveal-up">
+            <div class="availability-badge">
+              <span class="avail-dot"></span>
+              <span class="avail-text font-mono">Open for projects</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── FOOTER ────── -->
+    <footer class="footer-section">
+      <div class="footer-cta">
+        <h2 class="cta-title" data-split-chars>LET'S CREATE</h2>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-label font-mono">OMÈRTA © 2024</span>
+        <p class="footer-tagline">Silence speaks volumes. Cinema screams beautifully.</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
